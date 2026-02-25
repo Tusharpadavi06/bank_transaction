@@ -1,5 +1,5 @@
 /**
- * Ginza Industries Ltd. - Order Entry Script
+ * Ginza Industries Ltd. - Bill Submission Script
  * 
  * INSTRUCTIONS:
  * 1. Open your Google Sheet.
@@ -31,9 +31,10 @@ function doPost(e) {
         "IFSC Code", 
         "Bill Date", 
         "Due Date", 
-        "Amount"
+        "Amount",
+        "Status"
       ]);
-      sheet.getRange(1, 1, 1, 9).setFontWeight("bold").setBackground("#f3f3f3");
+      sheet.getRange(1, 1, 1, 10).setFontWeight("bold").setBackground("#f3f3f3");
     }
     
     var timestamp = new Date();
@@ -50,7 +51,8 @@ function doPost(e) {
           data.ifscCode,
           bill.billDate,
           bill.dueDate,
-          bill.amount
+          bill.amount,
+          "Pending"
         ]);
       });
     }
@@ -69,5 +71,5 @@ function doPost(e) {
 }
 
 function doGet(e) {
-  return ContentService.createTextOutput("Ginza Order Entry Script is Active.");
+  return ContentService.createTextOutput("Ginza Bill Submission Script is Active.");
 }
